@@ -38,11 +38,11 @@ def maybe_install_uvloop() -> None:
         pass
 
 
-def cancel(tasks: Iterable["asyncio.Task[Any]"]) -> None:
-    """asyncio signal handler that cancels all `tasks` and reports to stderr."""
+def cancel(futures: Iterable["asyncio.Future[Any]"]) -> None:
+    """asyncio signal handler that cancels all `futures` and reports to stderr."""
     err("Aborted!")
-    for task in tasks:
-        task.cancel()
+    for future in futures:
+        future.cancel()
 
 
 def shutdown(loop: asyncio.AbstractEventLoop) -> None:
